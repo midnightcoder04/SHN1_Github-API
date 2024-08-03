@@ -69,7 +69,7 @@ document.getElementById('projects-form').addEventListener('submit', function(e) 
     }
 }
 
- 
+
 function fetchProjects() {
     const keyword = document.getElementById('domain').value;
     const projectsContainer = document.getElementById('projects');
