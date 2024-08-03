@@ -125,7 +125,7 @@ async function explainReadme() {
 }
 
  async function chatgptify(content, ageGroup) {
-    const apiUrl = 'shn-1-github-6yapiivky-midnightcoder04s-projects.vercel.app';
+    const apiUrl = 'https://shn-1-github-6yapiivky-midnightcoder04s-projects.vercel.app';
     try {
         const response = await fetch(`${apiUrl}/api/explain-readme`, {
             method: 'POST',
