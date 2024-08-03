@@ -24,19 +24,18 @@
         <section id="readme-explainer">
             <h2>Explain README for Different Ages</h2>
             <form id="readme-form">
-                <input type="text" id="readme-username" placeholder="GitHub Username" required>
-                <input type="text" id="repository" placeholder="Repository Name" required>
+                <input type="link" id="readme" placeholder="GitHub Repolink" required>
                 <select id="age-group" required>
                     <option value="5yr">5 years old</option>
                     <option value="10yr">10 years old</option>
                     <option value="15yr">15 years old</option>
                     <option value="20yr">20 years old</option>
                     <option value="30yr">30 years old</option>
-                    <option value="40yr">40 years old</option>
                     <option value="50yr">50 years old</option>
                 </select>
                 <button type="submit">Explain README</button>
             </form>
+            <div id="readme-current"></div>
             <div id="readme-explanation"></div>
         </section>
 
@@ -54,7 +53,6 @@
             <div id="projects"></div>
         </section>
     </main>
-
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
