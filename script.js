@@ -70,17 +70,29 @@ document.getElementById('projects-form').addEventListener('submit', function(e) 
 }
 
  
- function fetchProjects() {
-     const keyword = document.getElementById('domain');
-     const projects = document.getElementById('projects').value;
-     const projectsContainer = document.getElementById('projects-container');
-     projectsContainer.innerHTML = projects;
-     const url = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyword)}&sort=stars&order=desc&per_page=10`;
-      fetch(url)
-      .then{
-         console.log(`Most-starred repositories for keyword "${keyword}":`);
-         data.items.forEach(repo => {
-           console.log(`- ${repo.full_name} with ${repo.stargazers_count} stars`);
-         });
-       }
- }
+function fetchProjects() {
+    const keyword = document.getElementById('domain').value;
+    const projectsContainer = document.getElementById('projects');
+
+    const url = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyword)}&sort=stars&order=desc&per_page=10`;
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            projectsContainer.innerHTML = '';  // Clear previous results
+            console.log(`Most-starred repositories for keyword "${keyword}":`);
+            data.items.forEach(repo => {
+                console.log(`- ${repo.full_name} with ${repo.stargazers_count} stars`);
+                
+                const projectElement = document.createElement('div');
+                projectElement.innerHTML = `
+                    <h3><a href="${repo.html_url}" target="_blank">${repo.full_name}</a></h3>
+                    <p>${repo.description}</p>
+                    <p>⭐ ${repo.stargazers_count} stars</p>
+                `;
+                projectsContainer.appendChild(projectElement);
+            });
+        })
+        .catch(error => console.error('Error fetching projects:', error));
+}
+
