@@ -154,7 +154,6 @@ function fetchProjects() {
         .then(data => {
             projectsContainer.innerHTML = '';  
             data.items.forEach(repo => {
-                console.log(`- ${repo.full_name} with ${repo.stargazers_count} stars`);
                 
                 const projectElement = document.createElement('div');
                 projectElement.innerHTML = `
