@@ -9,7 +9,9 @@ const port = process.env.API_URL || 3000;
 const GenAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = GenAI.getGenerativeModel({ model: "gemini-1.5-flash"})
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://shn-1-github-6yapiivky-midnightcoder04s-projects.vercel.app' 
+}));
 app.use(bodyParser.json());
 
 app.post('/api/explain-readme', async (req, res) => {
