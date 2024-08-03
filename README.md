@@ -4,7 +4,7 @@
 
 
 
-# Project Name
+# GitHub API Calls
 This project is pretty ambitious, trying to implement 3 features in 1 site.
 Firstly there is a resume builder that works directly out of github
 Secondly there is a readme explainer that has some creative ways of seeing things
