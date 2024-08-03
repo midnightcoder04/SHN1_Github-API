@@ -5,10 +5,14 @@
 
 
 # Project Name
-Long Description about project. This project do that. This project is awesome...
+This project is pretty ambitious, trying to implement 3 features in 1 site.
+Firstly there is a resume builder that works directly out of github
+Secondly there is a readme explainer that has some creative ways of seeing things
+Thirdly there is a space to see the most starred projects in each domain.
 ## Team members
 1. [Habeeb00](https://github.com/TH-Activities/saturday-hack-night-template)
 2. [Athul Christy](https://github.com/TH-Activities/saturday-hack-night-template)
+3. [MidnightCoder04](https://github.com/TH-Activities/saturday-hack-night-template)
 ## Link to product walkthrough
 [link to video](Link Here)
 ## How it Works ?
