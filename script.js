@@ -125,9 +125,9 @@ async function explainReadme() {
 }
 
  async function chatgptify(content, ageGroup) {
-    const apiUrl = 'https://shn-1-github-6yapiivky-midnightcoder04s-projects.vercel.app';
+    const prompt = `Explain this readme to a ${ageGroup} year old: ${content}`;
     try {
-        const response = await fetch(`${apiUrl}/api/explain-readme`, {
+        const response = await fetch('http://localhost:3000/api/explain-readme', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -153,7 +153,9 @@ function fetchProjects() {
         .then(response => response.json())
         .then(data => {
             projectsContainer.innerHTML = '';  
+            console.log(`Most-starred repositories for keyword "${keyword}":`);
             data.items.forEach(repo => {
+                console.log(`- ${repo.full_name} with ${repo.stargazers_count} stars`);
                 
                 const projectElement = document.createElement('div');
                 projectElement.innerHTML = `
