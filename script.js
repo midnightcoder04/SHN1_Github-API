@@ -12,20 +12,92 @@ document.getElementById('projects-form').addEventListener('submit', function(e) 
     fetchProjects();
  });
 
- function buildResume() {
+ async function buildResume() {
     const username = document.getElementById('username').value;
-    fetch(`https://api.github.com/users/${username}`)
-    .then(response => response.json())
-    .then(user => {
-        console.log(user)
+    try {
+        const response = await fetch(`https://api.github.com/users/${username}`);
+        const user = await response.json();
+
+        const repoResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+        const repos = await repoResponse.json();
+
         const resumeContainer = document.getElementById('resume');
+        let reposHtml = '';
+        repos.forEach(repo => {
+            reposHtml += `<li>${repo.name} (Created on: ${new Date(repo.created_at).toLocaleDateString()})</li>`;
+        });
+
         resumeContainer.innerHTML = `
-        <h3>${user.login}</h3>
-        <p>${user.html_url}</p>
-        `
+            <img src="${user.avatar_url}" alt="${user.login}'s avatar" width="100" height="100">
+            <h3>${user.login}</h3>
+            <p><a href="${user.html_url}" target="_blank">${user.html_url}</a></p>
+            <p>${user.bio || 'No bio available'}</p>
+            <p>Public Repos: ${user.public_repos}</p>
+            <p>Followers: ${user.followers}</p>
+            <p>Following: ${user.following}</p>
+            <h4>Repositories:</h4>
+            <ul>${reposHtml}</ul>
+            <button id="download-pdf">Download PDF</button>
+        `;
+
+        window.user = user;
+        window.repos = repos;
+
+        document.getElementById('download-pdf').addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadPDF();
+        });
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const user = window.user;
+    const repos = window.repos;
+
+    doc.setFontSize(24);
+    doc.text('GitHub Resume', 20, 20);
+
+    doc.setFontSize(12);
+    doc.text(`Username: ${user.login}`, 20, 40);
+    doc.text(`Profile: ${user.html_url}`, 20, 50);
+    doc.text(`Bio: ${user.bio || 'No bio available'}`, 20, 60);
+    doc.text(`Public Repos: ${user.public_repos}`, 20, 70);
+    doc.text(`Followers: ${user.followers}`, 20, 80);
+    doc.text(`Following: ${user.following}`, 20, 90);
+    doc.text(`Repositories:`,20,105);
+    let y = 115;
+    repos.forEach(repo => {
+        doc.text(`- ${repo.name} (Created on: ${new Date(repo.created_at).toLocaleDateString()})`,20,y);
+        y+=8;
     })
-    .catch(error => console.error(error));
- }
+
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src = user.avatar_url;
+    img.onload = function() {
+        const imgData = getBase64Image(img);
+        doc.addImage(imgData, 'PNG', 160,30,30,30);
+        doc.save('resume.pdf');
+    }
+    img.onerror = function() {
+        doc.save('resume.pdf');
+    }
+}
+
+function getBase64Image(img) {
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0 ,0);
+    return canvas.toDataURL("image/png");
+}
 
  function explainReadme() {
     const repoLink = document.getElementById('readme').value;
@@ -79,7 +151,7 @@ function fetchProjects() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            projectsContainer.innerHTML = '';  // Clear previous results
+            projectsContainer.innerHTML = '';  
             console.log(`Most-starred repositories for keyword "${keyword}":`);
             data.items.forEach(repo => {
                 console.log(`- ${repo.full_name} with ${repo.stargazers_count} stars`);
