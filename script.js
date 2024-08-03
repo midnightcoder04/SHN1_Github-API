@@ -70,11 +70,17 @@ document.getElementById('projects-form').addEventListener('submit', function(e) 
 }
 
  
-
-
-
  function fetchProjects() {
-    // const projects = document.getElementById('projects').value;
-    // const projectsContainer = document.getElementById('projects-container');
-    // projectsContainer.innerHTML = projects;
+     const keyword = document.getElementById('domain');
+     const projects = document.getElementById('projects').value;
+     const projectsContainer = document.getElementById('projects-container');
+     projectsContainer.innerHTML = projects;
+     const url = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyword)}&sort=stars&order=desc&per_page=10`;
+      fetch(url)
+      .then{
+         console.log(`Most-starred repositories for keyword "${keyword}":`);
+         data.items.forEach(repo => {
+           console.log(`- ${repo.full_name} with ${repo.stargazers_count} stars`);
+         });
+       }
  }
