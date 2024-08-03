@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.API_URL || 3000;
 const GenAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = GenAI.getGenerativeModel({ model: "gemini-1.5-flash"})
 
