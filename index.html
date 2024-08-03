@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Integrations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>GitHub Integrations</h1>
+    </header>
+
+    <main>
+        <section id="resume-builder">
+            <h2>Build Resume from GitHub Profile</h2>
+            <form id="resume-form">
+                <input type="text" id="username" placeholder="GitHub Username" required>
+                <button type="submit">Fetch Profile</button>
+            </form>
+            <div id="resume"></div>
+        </section>
+
+        <section id="readme-explainer">
+            <h2>Explain README for Different Ages</h2>
+            <form id="readme-form">
+                <input type="text" id="readme-username" placeholder="GitHub Username" required>
+                <input type="text" id="repository" placeholder="Repository Name" required>
+                <select id="age-group" required>
+                    <option value="5yr">5 years old</option>
+                    <option value="10yr">10 years old</option>
+                    <option value="15yr">15 years old</option>
+                    <option value="20yr">20 years old</option>
+                    <option value="30yr">30 years old</option>
+                    <option value="40yr">40 years old</option>
+                    <option value="50yr">50 years old</option>
+                </select>
+                <button type="submit">Explain README</button>
+            </form>
+            <div id="readme-explanation"></div>
+        </section>
+
+        <section id="famous-projects">
+            <h2>Find Famous Projects by Domain</h2>
+            <form id="projects-form">
+                <select id="domain" required>
+                    <option value="machine-learning">Machine Learning</option>
+                    <option value="web-development">Web Development</option>
+                    <option value="data-science">Data Science</option>
+                    <option value="mobile-development">Mobile Development</option>
+                </select>
+                <button type="submit">Find Projects</button>
+            </form>
+            <div id="projects"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
