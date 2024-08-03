@@ -26,12 +26,10 @@
             <form id="readme-form">
                 <input type="link" id="readme" placeholder="GitHub Repolink" required>
                 <select id="age-group" required>
-                    <option value="5yr">5 years old</option>
-                    <option value="10yr">10 years old</option>
-                    <option value="15yr">15 years old</option>
-                    <option value="20yr">20 years old</option>
-                    <option value="30yr">30 years old</option>
-                    <option value="50yr">50 years old</option>
+                    <option value="child">child</option>
+                    <option value="teenager">teenager</option>
+                    <option value="adult">adult</option>
+                    <option value="zombie">zombie</option>
                 </select>
                 <button type="submit">Explain README</button>
             </form>
@@ -39,19 +37,8 @@
             <div id="readme-explanation"></div>
         </section>
 
-        <section id="famous-projects">
-            <h2>Find Famous Projects by Domain</h2>
-            <form id="projects-form">
-                <select id="domain" required>
-                    <option value="machine-learning">Machine Learning</option>
-                    <option value="web-development">Web Development</option>
-                    <option value="data-science">Data Science</option>
-                    <option value="mobile-development">Mobile Development</option>
-                </select>
-                <button type="submit">Find Projects</button>
-            </form>
-            <div id="projects"></div>
-        </section>
+        <div id="projects"></div>
+
     </main>
 
     <script type="module" src="script.js"></script>
