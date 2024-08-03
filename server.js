@@ -1,35 +1,29 @@
 const express = require('express');
-const OpenAI = require('openai');
+const {GoogleGenerativeAI} = require("@google/generative-ai");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
+const GenAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = GenAI.getGenerativeModel({ model: "gemini-1.5-flash"})
 
 app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/api/explain-readme', async (req, res) => {
     const { content, ageGroup } = req.body;
-    const prompt = `Explain this readme to a ${ageGroup} year old: ${content}`;
+    const prompt = `Explain this readme to a ${ageGroup} : ${content}`;
     
     try {
-        const response = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: "You are a helpful assistant." },
-                { role: "user", content: prompt }
-            ]
-        });
-        console.log('OpenAI response:', response);
-        res.json({ explanation: response.choices[0].message.content.trim() });
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const explanation = response.text();
+        console.log('Gemini response:', explanation);
+        res.json({ explanation: explanation.trim() });
     } catch (error) {
-        console.error('Error during OpenAI API request:', error);
+        console.error('Error during Gemini API request:', error);
         res.status(500).json({ error: 'Error generating explanation.' });
     }
 });

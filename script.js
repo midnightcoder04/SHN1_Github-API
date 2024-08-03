@@ -99,7 +99,7 @@ function getBase64Image(img) {
     return canvas.toDataURL("image/png");
 }
 
- function explainReadme() {
+async function explainReadme() {
     const repoLink = document.getElementById('readme').value;
     const ageGroup = document.getElementById('age-group').value;
 
@@ -107,21 +107,22 @@ function getBase64Image(img) {
     const username = repoParts[0];
     const repository = repoParts[1];
 
-    fetch(`https://api.github.com/repos/${username}/${repository}/readme`,{
-        headers: {
-            Accept: "application/vnd.github.v3.raw"
-        }  
-    })
-    .then (response => response.text())
-    .then (content => {
-        const chatgptContent = chatgptify(content, ageGroup);
+    try {
+        const response = await fetch(`https://api.github.com/repos/${username}/${repository}/readme`, {
+            headers: {
+                Accept: "application/vnd.github.v3.raw"
+            }  
+        });
+        const content = await response.text();
+        const chatgptContent = await chatgptify(content, ageGroup);
         const readmeCurrentDiv = document.getElementById('readme-current');
         const readmeExplanationDiv = document.getElementById('readme-explanation');
         readmeCurrentDiv.innerHTML = `<h3>Readme:</h3> <pre> ${content}</pre>`;
         readmeExplanationDiv.innerHTML = `<h3>Explanation:</h3> <p> ${chatgptContent} </p>`;
-    })
-    .catch(error => console.error(error));
- }
+    } catch (error) {
+        console.error(error);
+    }
+}
 
  async function chatgptify(content, ageGroup) {
     const prompt = `Explain this readme to a ${ageGroup} year old: ${content}`;
