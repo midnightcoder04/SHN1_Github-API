@@ -22,14 +22,14 @@
         </section>
 
         <section id="readme-explainer">
-            <h2>Explain README for Different Ages</h2>
+            <h2>Explain README for Different Groups</h2>
             <form id="readme-form">
                 <input type="link" id="readme" placeholder="GitHub Repolink" required>
                 <select id="age-group" required>
-                    <option value="child">child</option>
-                    <option value="teenager">teenager</option>
-                    <option value="adult">adult</option>
-                    <option value="zombie">zombie</option>
+                    <option value="kid">Kids</option>
+                    <option value="teenager">Teenagers</option>
+                    <option value="adult">Adults</option>
+                    <option value="zombie">Zombies</option>
                 </select>
                 <button type="submit">Explain README</button>
             </form>
@@ -37,8 +37,35 @@
             <div id="readme-explanation"></div>
         </section>
 
-        <div id="projects"></div>
-
+        <section id="famous-projects">
+            <h2>Find Famous Projects by Domain</h2>
+            <form id="projects-form">
+                <select id="domain" required>
+                    <option value="machine-learning">Machine Learning</option>
+                    <option value="web-development">Web Development</option>
+                    <option value="data-science">Data Science</option>
+                    <option value="mobile-development">Mobile Development</option>
+                    <option value="artificial-intelligence">Artificial Intelligence</option>
+                    <option value="cybersecurity">Cybersecurity</option>
+                    <option value="cloud-computing">Cloud Computing</option>
+                    <option value="internet-of-things">Internet of Things (IoT)</option>
+                    <option value="blockchain">Blockchain</option>
+                    <option value="game-development">Game Development</option>
+                    <option value="robotics">Robotics</option>
+                    <option value="virtual-reality">Virtual Reality</option>
+                    <option value="augmented-reality">Augmented Reality</option>
+                    <option value="devops">DevOps</option>
+                    <option value="bioinformatics">Bioinformatics</option>
+                    <option value="big-data">Big Data</option>
+                    <option value="natural-language-processing">Natural Language Processing</option>
+                    <option value="e-commerce">E-commerce</option>
+                    <option value="fintech">Fintech</option>
+                </select>
+                <button type="submit">Find Projects</button>
+            </form>
+            <div id="projects"></div>
+        </section>
+        
     </main>
 
     <script type="module" src="script.js"></script>
