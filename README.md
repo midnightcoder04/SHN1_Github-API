@@ -24,4 +24,4 @@ Library Name - Version
 ## How to configure
 Instructions for setting up project
 ## How to Run
-Instructions for running
+Just visit the above mentioned site and you are good to go
