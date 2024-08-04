@@ -29,12 +29,11 @@ h2 {
 }
 
 button {
-    background-color: #333;
+    background-color: #2EA44F;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 10px;
-
+    border-radius: 4px;
     cursor: pointer;
 }
 

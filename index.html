@@ -22,21 +22,19 @@
         </section>
 
         <section id="readme-explainer">
-            <h2>Explain README for Different Ages</h2>
+            <h2>Explain README for Different Groups</h2>
             <form id="readme-form">
-                <input type="text" id="readme-username" placeholder="GitHub Username" required>
-                <input type="text" id="repository" placeholder="Repository Name" required>
+                <input type="link" id="readme" placeholder="GitHub Repolink" required>
                 <select id="age-group" required>
-                    <option value="5yr">5 years old</option>
-                    <option value="10yr">10 years old</option>
-                    <option value="15yr">15 years old</option>
-                    <option value="20yr">20 years old</option>
-                    <option value="30yr">30 years old</option>
-                    <option value="40yr">40 years old</option>
-                    <option value="50yr">50 years old</option>
+                    <option value="kid">Kids</option>
+                    <option value="teenager">Teenagers</option>
+                    <option value="adult">Adults</option>
+                    <option value="pirate">Pirates</option>
+                    <option value="ninja">Ninjas</option>
                 </select>
                 <button type="submit">Explain README</button>
             </form>
+            <div id="readme-current"></div>
             <div id="readme-explanation"></div>
         </section>
 
@@ -44,17 +42,33 @@
             <h2>Find Famous Projects by Domain</h2>
             <form id="projects-form">
                 <select id="domain" required>
-                    <option value="machine-learning">Machine Learning</option>
                     <option value="web-development">Web Development</option>
+                    <option value="machine-learning">Machine Learning</option>
                     <option value="data-science">Data Science</option>
                     <option value="mobile-development">Mobile Development</option>
+                    <option value="artificial-intelligence">Artificial Intelligence</option>
+                    <option value="cybersecurity">Cybersecurity</option>
+                    <option value="cloud-computing">Cloud Computing</option>
+                    <option value="internet-of-things">Internet of Things (IoT)</option>
+                    <option value="blockchain">Blockchain</option>
+                    <option value="game-development">Game Development</option>
+                    <option value="robotics">Robotics</option>
+                    <option value="virtual-reality">Virtual Reality</option>
+                    <option value="augmented-reality">Augmented Reality</option>
+                    <option value="devops">DevOps</option>
+                    <option value="bioinformatics">Bioinformatics</option>
+                    <option value="big-data">Big Data</option>
+                    <option value="natural-language-processing">Natural Language Processing</option>
+                    <option value="e-commerce">E-commerce</option>
+                    <option value="fintech">Fintech</option>
                 </select>
                 <button type="submit">Find Projects</button>
             </form>
             <div id="projects"></div>
         </section>
+        
     </main>
-
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
